@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Selamat Ulang Tahun! ✨ Special Birthday Celebration</title>
+
+  <!-- Favicon Emoji -->
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎂</text></svg>">
+
+  <!-- Google Fonts: Outfit, Dancing Script, Caveat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,500&display=swap"
+    rel="stylesheet">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- Floating Canvas for Golden Sparkles & Confetti -->
+  <canvas id="particleCanvas"></canvas>
+
+  <!-- Background Decorative Shapes & Glowing Orbs -->
+  <div class="bg-glow bg-glow-1"></div>
+  <div class="bg-glow bg-glow-2"></div>
+  <div class="bg-glow bg-glow-3"></div>
+
+  <!-- FLOATING FLOATING AUDIO PLAYER WIDGET -->
+  <aside class="floating-music-bar" id="musicBar" aria-label="Pemutar Musik">
+    <div class="music-disc-wrap" id="musicDiscWrap" title="Klik untuk Putar/Jeda Lagu">
+      <div class="music-disc" id="musicDisc">
+        <span class="disc-center">💛</span>
+      </div>
+      <div class="disc-waves" id="discWaves">
+        <span></span><span></span><span></span><span></span>
+      </div>
+    </div>
+    <div class="music-info">
+      <div class="music-title" id="musicTitle">Melodi Spesial Hari Ini 🎵</div>
+      <div class="music-artist">Spesial Untukmu ✨</div>
+      <div class="music-progress-bar" id="progressBarContainer">
+        <div class="music-progress-fill" id="progressFill"></div>
+      </div>
+    </div>
+    <div class="music-controls">
+      <button class="music-btn" id="playPauseBtn" title="Putar / Jeda" aria-label="Putar atau Jeda Musik">
+        <span id="playIcon">▶️</span>
+      </button>
+      <button class="music-btn" id="muteBtn" title="Mute / Unmute" aria-label="Bisukan atau Bunyikan Musik">
+        <span id="muteIcon">🔊</span>
+      </button>
+    </div>
+    <!-- Hidden HTML5 Audio Element -->
+    <audio id="bgMusic" src="lagu1.mp3" preload="auto" loop></audio>
+  </aside>
+
+  <!-- FLOATING QUICK ACTION BUTTONS -->
+  <div class="floating-actions">
+    <button class="action-btn action-confetti" id="btnBurstConfetti" title="Hujani Confetti! 🎉">
+      🎊 <span>Rayakan!</span>
+    </button>
+  </div>
+
+  <!-- INTRO POPUP MODAL (Greeting Card Opener & Audio Starter) -->
+  <div class="intro-modal-backdrop" id="introModal">
+    <div class="intro-card">
+      <div class="intro-badge">✨ Kartu Ucapan Spesial ✨</div>
+      <div class="intro-gift-icon">🎁</div>
+      <h2 class="intro-heading">Ada Kejutan Untukmu Hari Ini!</h2>
+      <p class="intro-desc">
+        Seseorang yang spesial telah menyiapkan website penuh kenangan, doa, dan alunan lagu indah spesial untuk hari
+        bahagiamu.
+      </p>
+      <div class="intro-prompt">Tekan tombol di bawah untuk membuka ucapan & memutar lagu:</div>
+      <button class="btn-primary btn-open-gift" id="btnOpenGift">
+        <span class="btn-sparkle">✨</span> Buka Ucapan & Putar Musik 🎵
+      </button>
+      <div class="intro-subtext">Pastikan volume suaramu menyala ya! 💛</div>
+    </div>
+  </div>
+
+  <!-- MAIN WRAPPER -->
+  <div class="site-wrapper" id="mainSite">
+
+    <!-- HERO SECTION -->
+    <header class="hero-section" id="hero">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="badge-icon">🎉</span>
+          <span>SPECIAL BIRTHDAY CELEBRATION</span>
+          <span class="badge-icon">✨</span>
+        </div>
+
+        <h1 class="hero-title">
+          Selamat Ulang Tahun Sayangku,
+          <span class="name-highlight" id="recipientName" title="Klik tombol pensil untuk ubah nama">
+            Diah Ramadhani
+          </span>
+          <button class="btn-edit-name" id="btnEditName" title="Ubah Nama" aria-label="Ubah Nama">✏️</button>
+        </h1>
+
+        <p class="hero-subtitle">
+          "Semoga di setiap embusan lilin dan langkah barumu hari ini, mengalir sejuta kebahagiaan, kesehatan yang
+          paripurna, serta segala impian yang perlahan menjadi nyata."
+        </p>
+
+        <!-- Dynamic Milestone Tags -->
+        <div class="celebration-tags">
+          <div class="c-tag"><span class="tag-emoji">🌟</span> Bertambah Usia & Makin Bijak</div>
+          <div class="c-tag"><span class="tag-emoji">🥳</span> Hari Paling Spesial</div>
+          <div class="c-tag"><span class="tag-emoji">💖</span> Dikelilingi Orang Tersayang</div>
+        </div>
+
+        <!-- Quick Scroll Navigation -->
+        <div class="hero-actions">
+          <a href="#birthday-cake" class="btn-primary">
+            🎂 Tiup Lilin Kue
+          </a>
+          <a href="#photo-gallery" class="btn-secondary">
+            📸 Lihat Kenangan Indah
+          </a>
+          <a href="#heartfelt-letter" class="btn-secondary">
+            💌 Baca Surat Spesial
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- SECTION: INTERACTIVE BIRTHDAY CAKE (TIUP LILIN) -->
+    <section class="section-card cake-section" id="birthday-cake">
+      <div class="section-header">
+        <span class="section-tag">Make A Wish 🕯️</span>
+        <h2 class="section-title">Yuk, Tiup Lilin Ulang Tahunmu!</h2>
+        <p class="section-desc">Pejamkan mata sejenak, panjatkan doamu yang paling tulus, lalu tekan tombol untuk meniup
+          lilinnya.</p>
+      </div>
+
+      <div class="cake-stage">
+        <!-- Interactive Cake Illustration -->
+        <div class="cake-container" id="cakeContainer">
+          <div class="candle-wrapper" id="candleWrapper" title="Klik lilin untuk meniupnya!">
+            <!-- Flame & Smoke -->
+            <div class="flame-glow" id="flameGlow"></div>
+            <div class="flame" id="flame"></div>
+            <div class="smoke" id="smoke"></div>
+            <div class="candle-wick"></div>
+            <div class="candle-stick"></div>
+          </div>
+          <div class="cake-tier cake-tier-top">
+            <div class="cream-drip"></div>
+            <div class="strawberry s-1">🍓</div>
+            <div class="strawberry s-2">🍒</div>
+            <div class="strawberry s-3">🍓</div>
+          </div>
+          <div class="cake-tier cake-tier-middle">
+            <div class="frosting-layer"></div>
+          </div>
+          <div class="cake-tier cake-tier-bottom">
+            <div class="cake-ribbon"></div>
+          </div>
+          <div class="cake-plate"></div>
+        </div>
+
+        <!-- Cake Controls & Wish Status -->
+        <div class="cake-interaction">
+          <div class="wish-banner" id="wishBanner">
+            <span class="wish-icon">🕯️</span>
+            <span id="wishStatusText">Lilin masih menyala terang... Siap meniup?</span>
+          </div>
+
+          <div class="cake-buttons">
+            <button class="btn-primary btn-blow" id="btnBlowCandle">
+              💨 Tiup Lilinnya!
+            </button>
+            <button class="btn-secondary btn-relight" id="btnRelightCandle" style="display: none;">
+              🔥 Nyalakan Lilin Lagi
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: MEMORY PHOTO GALLERY (POLAROID SHOWCASE) -->
+    <section class="section-card gallery-section" id="photo-gallery">
+      <div class="section-header">
+        <span class="section-tag">Album Kenangan 📸</span>
+        <h2 class="section-title">Momen Indah Bersamamu</h2>
+        <p class="section-desc">Tiap foto menyimpan cerita dan senyum yang takkan pernah pudar oleh waktu.</p>
+      </div>
+
+      <div class="polaroid-grid">
+        <!-- Polaroid Card 1 -->
+        <div class="polaroid-card tilt-left" data-index="0" data-src="foto1.jpeg"
+          data-caption="Momen Kelulusan & Prestasi Membanggakan 🎓✨">
+          <div class="washi-tape tape-yellow"></div>
+          <div class="photo-frame">
+            <img src="foto1.jpeg" alt="Momen Kelulusan Spesial" loading="lazy" />
+            <div class="photo-overlay">
+              <span class="zoom-icon">🔍 Klik untuk Perbesar</span>
+            </div>
+          </div>
+          <div class="polaroid-caption">
+            <p class="caption-handwritten">Momen Kelulusan & Langkah Masa Depan 🎓✨</p>
+            <div class="photo-meta">
+              <span class="photo-date">Momen Kebanggaan</span>
+              <button class="like-btn" data-liked="false" title="Sukai foto ini">
+                <span class="heart-icon">🤍</span> <span class="like-count">128</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Polaroid Card 2 -->
+        <div class="polaroid-card tilt-straight" data-index="1" data-src="fotoo2.jpeg"
+          data-caption="Kompak & Selalu Penuh Canda Tawa 🛍️💖">
+          <div class="washi-tape tape-coral"></div>
+          <div class="photo-frame">
+            <img src="fotoo2.jpeg" alt="Kompak Jalan-jalan Bersama" loading="lazy" />
+            <div class="photo-overlay">
+              <span class="zoom-icon">🔍 Klik untuk Perbesar</span>
+            </div>
+          </div>
+          <div class="polaroid-caption">
+            <p class="caption-handwritten">Kompak & Selalu Penuh Canda Tawa 🛍️💖</p>
+            <div class="photo-meta">
+              <span class="photo-date">Hari yang Bahagia</span>
+              <button class="like-btn" data-liked="false" title="Sukai foto ini">
+                <span class="heart-icon">🤍</span> <span class="like-count">145</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Polaroid Card 3 -->
+        <div class="polaroid-card tilt-right" data-index="2" data-src="foto3.jpeg"
+          data-caption="Senyuman Terindah & Paling Hangat 🥰🌟">
+          <div class="washi-tape tape-gold"></div>
+          <div class="photo-frame">
+            <img src="foto3.jpeg" alt="Senyuman Hangat Berdua" loading="lazy" />
+            <div class="photo-overlay">
+              <span class="zoom-icon">🔍 Klik untuk Perbesar</span>
+            </div>
+          </div>
+          <div class="polaroid-caption">
+            <p class="caption-handwritten">Senyuman Terindah & Paling Hangat 🥰🌟</p>
+            <div class="photo-meta">
+              <span class="photo-date">Momen Terfavorit</span>
+              <button class="like-btn" data-liked="false" title="Sukai foto ini">
+                <span class="heart-icon">🤍</span> <span class="like-count">199</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="gallery-hint">
+        💡 <em>Tip: Klik pada foto untuk melihat ukuran penuh dan resolusi jernih!</em>
+      </div>
+    </section>
+
+    <!-- SECTION: HEARTFELT LETTER (SURAT DARI HATI) -->
+    <section class="section-card letter-section" id="heartfelt-letter">
+      <div class="section-header">
+        <span class="section-tag">Pesan Tulus 💌</span>
+        <h2 class="section-title">Sepucuk Surat Untukmu</h2>
+        <p class="section-desc">Ungkapan kata yang tertulis khusus dari lubuk hati paling dalam.</p>
+      </div>
+
+      <div class="letter-paper">
+        <div class="letter-header">
+          <div class="letter-stamp">
+            <span>💛</span>
+            <small>SPECIAL DAY</small>
+          </div>
+          <div class="letter-date" id="letterCurrentDate">Hari Paling Istimewa</div>
+        </div>
+
+        <div class="letter-body">
+          <p class="letter-salutation">Hai yang sedang berulang tahun,</p>
+
+          <p>
+            Selamat bertambah usia sayangkuu! Semoga hari ini menjadi awal dari babak baru kehidupan yang jauh lebih
+            membahagiakan, penuh keberkahan, dan selalu dinaungi oleh cinta yang tulus.
+          </p>
+
+          <p>
+            Terima kasih telah hadir dan menjadi sosok yang begitu luar biasa. Senyumanmu, kebaikanmu, serta semangat
+            yang selalu kamu pancarkan selalu berhasil mewarnai hari-hari. Melihat kamu tumbuh, berjuang, dan meraih
+            mimpi-mimpimu adalah salah satu hal yang paling membanggakan.
+          </p>
+
+          <p>
+            Di usiamu yang baru ini, jangan pernah merasa sendirian saat menghadapi badai apa pun. Tetaplah menjadi
+            pribadi yang rendah hati, bersinar terang, dan selalu menyayangi diri sendiri. Kamu pantas mendapatkan
+            segala hal baik yang ada di dunia ini.
+          </p>
+
+          <p class="letter-closing">
+            Dengan penuh rasa sayang & doa terbaik,<br />
+            <strong class="letter-sender">Seseorang yang Selalu Mendukungmu 💛</strong>
+          </p>
+        </div>
+
+        <div class="letter-decorations">
+          <span class="decor-flower">🌻</span>
+          <span class="decor-sparkle">✨</span>
+          <span class="decor-heart">💖</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: INTERACTIVE WISH CARDS (DOA & HARAPAN) -->
+    <section class="section-card wishes-section" id="wishes-pillars">
+      <div class="section-header">
+        <span class="section-tag">Untaian Doa 🤲</span>
+        <h2 class="section-title">4 Harapan Terindah Untukmu</h2>
+        <p class="section-desc">Sentuh kartu di bawah untuk membuka doa-doa baik yang dipanjatkan.</p>
+      </div>
+
+      <div class="wish-cards-container">
+        <!-- Card 1: Kesehatan -->
+        <div class="wish-item-card" tabindex="0">
+          <div class="card-icon-pill icon-yellow">🌿</div>
+          <h3 class="wish-card-title">Kesehatan & Afiat</h3>
+          <p class="wish-card-text">
+            Diberikan tubuh yang selalu bugar, pikiran yang tenang, serta dijauhkan dari segala sakit dan lelah yang
+            berlebih.
+          </p>
+          <div class="card-highlight">"Sehat lahir dan batin di setiap hela nafas."</div>
+        </div>
+
+        <!-- Card 2: Kebahagiaan -->
+        <div class="wish-item-card" tabindex="0">
+          <div class="card-icon-pill icon-orange">😊</div>
+          <h3 class="wish-card-title">Kebahagiaan Hati</h3>
+          <p class="wish-card-text">
+            Semoga harimu selalu dipenuhi alasan untuk tersenyum, hati yang lapang, dan kebahagiaan sederhana yang
+            menghangatkan jiwa.
+          </p>
+          <div class="card-highlight">"Tak pernah kehabisan alasan untuk tersenyum manis."</div>
+        </div>
+
+        <!-- Card 3: Kesuksesan -->
+        <div class="wish-item-card" tabindex="0">
+          <div class="card-icon-pill icon-gold">🚀</div>
+          <h3 class="wish-card-title">Kesuksesan & Karier</h3>
+          <p class="wish-card-text">
+            Segala cita-cita, rencana besar, dan perjuangan yang sedang dirintis semoga dibukakan jalan kemudahan dan
+            sukses gemilang.
+          </p>
+          <div class="card-highlight">"Setiap usaha membuahkan hasil yang membanggakan."</div>
+        </div>
+
+        <!-- Card 4: Perlindungan & Kasih -->
+        <div class="wish-item-card" tabindex="0">
+          <div class="card-icon-pill icon-pink">💖</div>
+          <h3 class="wish-card-title">Cinta & Kasih Sayang</h3>
+          <p class="wish-card-text">
+            Selalu dikelilingi oleh orang-orang yang tulus menyayangimu, menghargaimu, dan ada di sisimu dalam suka
+            maupun duka.
+          </p>
+          <div class="card-highlight">"Dikelilingi kehangatan kasih selamanya."</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: VIRTUAL GIFT BOX (KADO SPESIAL) -->
+    <section class="section-card gift-section" id="virtual-gift">
+      <div class="section-header">
+        <span class="section-tag">Hadiah Kejutan 🎁</span>
+        <h2 class="section-title">Ada Kado Spesial Untukmu!</h2>
+        <p class="section-desc">Kira-kira apa ya isinya? Klik kotak kado di bawah ini untuk membukanya!</p>
+      </div>
+
+      <div class="gift-box-area">
+        <div class="gift-box" id="interactiveGiftBox" title="Klik untuk membuka kado!">
+          <div class="gift-lid" id="giftLid">
+            <div class="gift-bow">🎀</div>
+          </div>
+          <div class="gift-body">
+            <div class="gift-ribbon-vertical"></div>
+            <div class="gift-ribbon-horizontal"></div>
+          </div>
+        </div>
+
+        <div class="gift-prompt" id="giftPromptText">
+          👆 Ketuk kotak kado kuning di atas untuk membuka!
+        </div>
+
+        <!-- Hidden Surprise Content revealed upon opening -->
+        <div class="gift-surprise-card" id="giftSurprise">
+          <div class="surprise-badge">🎉 SELAMAT! KAMU MENDAPATKAN:</div>
+          <div class="coupon-item">
+            <span class="coupon-icon">🎟️</span>
+            <div>
+              <strong>Kupon "Makan Sepuasnya Ditraktir"</strong>
+              <p>Berlaku kapan pun kamu mau makan bareng! 😋</p>
+            </div>
+          </div>
+          <div class="coupon-item">
+            <span class="coupon-icon">🤗</span>
+            <div>
+              <strong>Kupon "Pelukan Hangat & Pendengar Setia"</strong>
+              <p>Tanpa batas waktu & selalu siap 24/7 saat kamu butuh teman cerita.</p>
+            </div>
+          </div>
+          <div class="coupon-item">
+            <span class="coupon-icon">⭐</span>
+            <div>
+              <strong>Doa Tulus Tanpa Henti</strong>
+              <p>Agar kamu selalu bahagia dan dilindungi Tuhan Yang Maha Esa.</p>
+            </div>
+          </div>
+          <button class="btn-primary btn-claim" id="btnClaimCoupon">
+            💖 Klaim Hadiah Ini!
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: WISH BOARD (PAPAN HARAPAN INTERAKTIF) -->
+    <section class="section-card board-section" id="wish-board">
+      <div class="section-header">
+        <span class="section-tag">Papan Harapan 📝</span>
+        <h2 class="section-title">Tinggalkan Doa & Ucapan</h2>
+        <p class="section-desc">Tuliskan pesan, harapan, atau kata-kata manismu di sini dan tempelkan di papan kenangan!
+        </p>
+      </div>
+
+      <!-- Form Input -->
+      <form class="wish-form" id="wishForm">
+        <div class="form-row">
+          <input type="text" id="senderInput" placeholder="Nama Kamu (contoh: Restu / Sahabat)" required
+            maxlength="40" />
+          <select id="colorThemeSelect" aria-label="Warna Sticky Note">
+            <option value="sticky-yellow">🟡 Kuning Cerah</option>
+            <option value="sticky-honey">🍯 Kuning Madu</option>
+            <option value="sticky-coral">🍑 Peach / Oranye</option>
+            <option value="sticky-mint">🍃 Hijau Mint</option>
+          </select>
+        </div>
+        <textarea id="messageInput" rows="3" placeholder="Tuliskan ucapan selamat ulang tahun & harapan manismu..."
+          required maxlength="300"></textarea>
+        <div class="form-footer">
+          <span class="char-count" id="charCount">0/300</span>
+          <button type="submit" class="btn-primary btn-submit-wish">
+            📌 Tempelkan Ucapan
+          </button>
+        </div>
+      </form>
+
+      <!-- Sticky Notes Pinboard -->
+      <div class="pinboard-grid" id="pinboardContainer">
+        <!-- Initial Sticky Notes rendered via JS & saved in LocalStorage -->
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="footer-cake-icon">🎂</div>
+      <p class="footer-title">Dibuat dengan sepenuh hati & kasih sayang 💛</p>
+      <p class="footer-subtitle">Semoga ulang tahun kali ini menjadi salah satu hari paling berkesan dalam hidupmu!</p>
+      <div class="footer-credits">
+        <span>© 2026 • Dirayakan Bersama Cinta & Syukur</span>
+      </div>
+      <button class="btn-back-to-top" id="btnBackToTop" title="Kembali ke atas">
+        ⬆️ Kembali ke Atas
+      </button>
+    </footer>
+
+  </div>
+
+  <!-- LIGHTBOX MODAL FOR FULLSCREEN PHOTO VIEW -->
+  <div class="lightbox-modal" id="lightboxModal" aria-hidden="true">
+    <div class="lightbox-backdrop" id="lightboxBackdrop"></div>
+    <div class="lightbox-content">
+      <button class="lightbox-close" id="lightboxClose" title="Tutup">✕</button>
+      <img src="" alt="Perbesar Foto" class="lightbox-img" id="lightboxImg" />
+      <div class="lightbox-caption" id="lightboxCaption"></div>
+      <div class="lightbox-nav">
+        <button class="lightbox-btn" id="lightboxPrev" title="Foto Sebelumnya">❮ Sebelumnya</button>
+        <button class="lightbox-btn" id="lightboxNext" title="Foto Selanjutnya">Selanjutnya ❯</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCRIPT -->
+  <script src="script.js"></script>
+</body>
+
+</html>
